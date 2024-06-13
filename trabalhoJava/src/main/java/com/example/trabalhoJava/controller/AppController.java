@@ -36,6 +36,11 @@ public class AppController {
                 .toList();
     }
 
+    @DeleteMapping("/agendamentos/{id}")
+    public void deleteAgendamento(@PathVariable Long id) {
+        agendamentoRepository.deleteById(id);
+    }
+
     @PostMapping("/estoques")
     public void saveEstoque(@RequestBody EstoqueRequestDTO data) {
         Estoque estoqueData = new Estoque(data.produto(), data.quantidade(), data.preco());
@@ -48,14 +53,12 @@ public class AppController {
                 .map(EstoqueResponseDTO::new)
                 .toList();
     }
+
+    @DeleteMapping("/estoques/{id}")
+    public void deleteEstoque(@PathVariable Long id) {
+        estoqueRepository.deleteById(id);
+    }
 }
 
-/*
 
-Para agendamentos:
-    http://localhost:8080/api/agendamentos
-
-Para estoques:
-    http://localhost:8080/api/estoques
-*/
 
